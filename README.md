@@ -14,7 +14,7 @@ Latest build: **[Releases](../../releases/latest)**
 | OS | File | Needs |
 |---|---|---|
 | Windows | `RefSniffer_<version>_x64-setup.exe` | Windows 10 1803+. Installs the WebView2 runtime if it is missing. |
-| macOS | `RefSniffer_<version>_universal.dmg` | Apple Silicon or Intel. **Drag it to Applications** -- see below. |
+| macOS | `RefSniffer_<version>_universal.dmg` | Apple Silicon or Intel. **Untested -- see below.** Drag it to Applications. |
 | Linux | `RefSniffer_<version>_amd64.AppImage` | glibc 2.35+ (Ubuntu 22.04+, Debian 12+, Fedora 36+). `chmod +x`, then run. |
 
 ### Expect a warning the first time
@@ -22,6 +22,8 @@ Latest build: **[Releases](../../releases/latest)**
 The builds are **not code-signed yet**. Windows will say *"Windows protected your PC"*: click **More info**, then **Run anyway**. macOS will ask you to allow it under **System Settings > Privacy & Security**. The AppImage needs no signature.
 
 That is deliberate for now. RefSniffer goes directly to people who are told to expect this, rather than being published to strangers, and signing lands before that changes.
+
+**macOS has never been run.** Not once, by anyone. There is no Mac in the project, so the macOS build is shipped untested -- and the risk is specific rather than general: a universal binary is two builds joined with `lipo`, which strips the ad-hoc signature the linker applies to the Apple Silicon half, so an unsigned universal app may **fail to open at all** rather than show the usual warning. If you try it, please [open an issue](../../issues) saying what happened either way. Windows and Linux are both known to run.
 
 **macOS: drag the app to Applications before running it.** Launching it from the mounted disk image makes macOS run it from a temporary location, which breaks both updates and the Claude Code integration.
 
